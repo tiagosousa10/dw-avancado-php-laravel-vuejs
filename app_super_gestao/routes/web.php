@@ -19,8 +19,15 @@ Route::get('/sobre-nos', 'SobreNosController@sobreNos');
 
 Route::get('/contato', 'ContatoController@contato');
 
-//nome, categoria, assunto e mensagem
-Route::get('/contato/{nome}/{categoria}/{assunto}/{mensagem}', function(string $nome, string $categoria, string $assunto, string $mensagem) {
-    echo "estamos aqui: $nome - $categoria - $assunto - $mensagem ";
+Route::get('/login', function() {return 'Login';});
+
+//app
+Route::prefix('/app')->group(function() {
+Route::get('/clientes', function() {return 'clientes';});
+Route::get('/fornecedores', function() {
+    return 'fornecedores';
 });
+Route::get('/produtos', function() {return 'produtos';});
+});
+
 
