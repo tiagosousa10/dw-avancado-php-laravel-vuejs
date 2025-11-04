@@ -9,26 +9,30 @@
 
 @isset($fornecedores)
 
-    @foreach ( $fornecedores as $indice =>$fornecedor )
+    @forelse ($fornecedores as $indice => $fornecedor)
 
+        Iteracao atual: {{ $loop->iteration }}
+        <br />
+        Fornecedor: {{ $fornecedor['nome'] }}
+        <br />
+        Fornecedor: {{ $fornecedor['status'] }}
+        <br />
+        CNPJ: {{ $fornecedor['cnpj'] ?? 'dado nao foi preenchido'}}
+        <br />
+        Telefone: ({{ $fornecedor['ddd'] ?? '' }}) {{ $fornecedor['telefone'] ?? '' }}
 
-    Fornecedor: {{ $fornecedor['nome'] }}
-    <br />
-    Fornecedor: {{ $fornecedor['status'] }}
-    <br />
-    CNPJ: {{ $fornecedor['cnpj'] ?? 'dado nao foi preenchido' }}
-    <br />
-    Telefone:  ({{ $fornecedor['ddd'] ?? '' }})  {{ $fornecedor['telefone'] ?? '' }}
-    <hr/>
+        @if($loop->first)
+            Primeira iteracao
+        @endif
 
+        @if($loop->last)
+            Ultima iteracao
 
-@endforeach
-
-
-
-
-
-
-
+            <br>
+            Total de Registos : {{ $loop->count }}
+        @endif
+        <hr />
+    @empty
+        Nao existem Fornecedores cadastrados.
+    @endforelse
 @endisset
-
